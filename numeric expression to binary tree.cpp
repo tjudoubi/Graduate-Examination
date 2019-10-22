@@ -61,6 +61,28 @@ void houxu(Node* node){
         cout << node->data;
     }
 }
+/*
+////no recursion///
+void houxu(Node* root){
+    Node* node = root;
+    Node* prev = NULL;
+    stack<Node*> st;
+    while(node||!st.empty()){
+        while(node){
+            st.push(node);
+            node = node->l;
+        }
+        Node* top = st.top();
+        if(top->r==NULL||prev==top->r){
+            cout << top->data;
+            prev = top;
+            st.pop();
+        }else{
+            node = top->r;
+        }
+    }
+}
+*/
 
 int main(){
     string s = "a+b*c+(d*e+f)*g";
