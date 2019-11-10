@@ -93,3 +93,71 @@ int main(){
     houxu(root);
     cout << endl;
 }
+
+/*
+#include <iostream>
+using namespace std;
+
+typedef struct Tree{
+    Tree* left ,* right;
+    char data;
+}Tree;
+Tree* root;
+
+void build(string s,int a,int b,Tree* & node){
+    int index = -1;
+    int signal_last = 0x3f3f3f3f;
+    //cout << a <<  " " << b << endl;
+    if(a == b){
+        node = new Tree();
+        node->data = s[a];
+    }else if(s[a] == '(' && s[b] == ')'){
+        build(s,a+1,b-1,node);
+    }else{
+        int i = b;
+        while( i >= a){
+            cout << i << endl;
+            if(s[i] == ')'){
+                while(s[i] != '('){
+                    i--;
+                }
+                i--;
+            }else if(s[i] <= 'z'&&s[i] >= 'a'){
+                i--;
+            }else if(s[i] == '*'||s[i] == '/'){
+                if(signal_last > 2){
+                    signal_last = 2;
+                    index = i;
+                }
+                i--;
+            }else if(s[i] == '+'||s[i] == '-'){
+                if(signal_last > 1){
+                    cout << i << endl;
+                    signal_last = 1;
+                    index = i;
+                }
+                i--;
+            }
+        }
+        node = new Tree();
+        node->data = s[index];
+        build(s,a,index-1,node->left);
+        build(s,index+1,b,node->right);
+    }
+}
+
+void houxu(Tree* node){
+    if(node != NULL){
+        houxu(node->left);
+        houxu(node->right);
+        cout << node->data;
+    }
+}
+
+int main(){
+    string s = "a+b*c+(d*e+f)*g";
+    build(s,0,s.size()-1,root);
+    houxu(root);
+    cout << endl;
+}
+*/
